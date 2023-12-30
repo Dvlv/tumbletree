@@ -44,9 +44,6 @@ RUN zypper --non-interactive install libostree libostree-devel libostree-grub2 c
 RUN /tmp/ostree-container.sh
 
 # Run the build script, then clean up temp files and finalize container build.
-RUN chmod +x /tmp/build.sh
-RUN /tmp/build.sh
-RUN rm -rf /tmp/* /var/* 
 
 RUN /tmp/ostree-container-commit.sh
 
