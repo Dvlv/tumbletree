@@ -12,6 +12,8 @@ export CONFIG_DIRECTORY="/tmp/config"
 RECIPE_FILE="$CONFIG_DIRECTORY/$RECIPE"
 MODULE_DIRECTORY="/tmp/modules"
 
+echo "one";
+
 # https://mikefarah.gitbook.io/yq/usage/tips-and-tricks#yq-in-a-bash-loop
 get_yaml_array() {
     # creates array $1 with content at key $2 from $3
@@ -53,15 +55,14 @@ run_modules() {
 # Declare dynamically generated variables as exported
 declare -x IMAGE_NAME BASE_IMAGE OS_VERSION
 
+echo "two";
 # Read configuration variables.
 BASE_IMAGE="$(yq '.base-image' "$RECIPE_FILE")"
 IMAGE_NAME="$(yq '.name' "$RECIPE_FILE")"
 
-# Automatically determine which Fedora version we're building.
-OS_VERSION="$(grep -Po '(?<=VERSION_ID=)\d+' /usr/lib/os-release)"
 
 # Welcome.
-echo "Building $IMAGE_NAME from $BASE_IMAGE:$OS_VERSION."
+echo "Building Tumbletree"
 
 # Remove old image-info.json from main image
 # (this file is added back by signing.sh, but shouldn't exist
