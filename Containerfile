@@ -18,7 +18,7 @@ FROM ${BASE_IMAGE_URL}:${IMAGE_MAJOR_VERSION}
 # so that `podman build` should just work for most people.
 ARG RECIPE=recipe.yml 
 # The default image registry to write to policy.json and cosign.yaml
-ARG IMAGE_REGISTRY=ghcr.io/ublue-os
+ARG IMAGE_REGISTRY=registry.opensuse.org/opensuse
 
 
 COPY cosign.pub /usr/share/ublue-os/cosign.pub
@@ -32,7 +32,6 @@ COPY ostree-container-commit.sh /tmp/config/ostree-container-commit.sh
 
 # Copy modules
 # The default modules are inside ublue-os/bling
-COPY --from=ghcr.io/ublue-os/bling:latest /modules /tmp/modules/
 # Custom modules overwrite defaults
 COPY modules /tmp/modules/
 
